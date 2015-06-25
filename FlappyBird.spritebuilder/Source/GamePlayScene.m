@@ -12,11 +12,22 @@
     
     // add first obstacle
     [self addObstacle];
+    timeSinceObstacle = 0.0f;
 }
 
 -(void)update:(CCTime)delta
 {
-    // put update code here
+    // increment the time since the last obstacle was added
+    timeSinceObstacle += delta; // depends on frame rate (1/60 max)
+    
+    // check to see if two seconds have passed
+    if (timeSinceObstacle > 2.0f)
+    {
+        // add another obstacle
+        [self addObstacle];
+        // reset timer
+        timeSinceObstacle = 0;
+    }
 }
 
 // put new methods here
